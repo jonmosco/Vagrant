@@ -21,6 +21,17 @@ service { 'httpd':
   require => Package['httpd'],
 }
 
+# mysql server
+#package { 'mysql':
+#  ensure  => present,
+#  require => Class['resolver'],
+#}
+#
+#service { 'mysqld':
+#  ensure  => running,
+#  require => Package['mysql'],
+#}
+
 # install base packages
 package { $base_packages:
   ensure  => present,
