@@ -1,39 +1,24 @@
 ###############################################################################
 #
-# Default Manifest
+# Default Site Manifest
 # - Sets up our Puppet test server
+# - Test modules
 #
 ###############################################################################
 
-include resolver
+node 'vtest1.forkedprocess.com' {
+  include resolver, selinux
 
-# base packages
-$base_packages = [ 'git', 'nmap' ]
+  # Apache Module
+  # Install Apache
+  #class {'apache': }
 
-# Install apache
-package { 'httpd':
-  ensure  => present,
-  require => Class['resolver'], 
-}
+  # base packages
+  $base_packages = [ 'git', 'nmap' ]
 
-service { 'httpd':
-  ensure  => running,
-  require => Package['httpd'],
-}
-
-# mysql server
-#package { 'mysql':
-#  ensure  => present,
-#  require => Class['resolver'],
-#}
-#
-#service { 'mysqld':
-#  ensure  => running,
-#  require => Package['mysql'],
-#}
-
-# install base packages
-package { $base_packages:
-  ensure  => present,
-  require => Class['resolver'],
+  # install base packages
+  package { $base_packages:
+    ensure  => present,
+    require => Class['resolver'],
+  }
 }
