@@ -3,6 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "server-full"
+  config.vm.box_url = "http://dl.dropbox.com/u/58604/vagrant/win2k8r2.box "
 #   config.vm.provider :virtualbox do |vb|
 #     # Don't boot with headless mode
 #     vb.gui = true
