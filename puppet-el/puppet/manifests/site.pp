@@ -7,7 +7,7 @@
 ###############################################################################
 
 node 'vtest1.forkedprocess.com' {
-  include resolver
+  # include resolver
 
   # Apache Module
   # Install Apache
@@ -38,7 +38,7 @@ node 'vtest1.forkedprocess.com' {
   # install base packages
   package { $base_packages:
     ensure  => present,
-    require => Class['resolver'],
+    #  require => Class['resolver'],
   }
 
   # Not sure why this isnt working...
