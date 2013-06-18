@@ -26,6 +26,12 @@ node 'vtest1.forkedprocess.com' {
 
   class { 'firewall': }
 
+  firewall { '100 allow http and https access':
+    port   => [80, 443],
+    proto  => tcp,
+    action => accept,
+  }
+
   # base packages
   $base_packages = [ 'git', 'nmap' ]
 
