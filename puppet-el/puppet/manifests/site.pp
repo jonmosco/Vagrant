@@ -49,7 +49,7 @@ node 'vtest1.forkedprocess.com' {
 
   package { 'httpd':
     ensure  => installed,
-    require => Class['resolver'],
+    require => Firewall['100 allow http and https access'],
   }
 
   file { '/var/www/html':
