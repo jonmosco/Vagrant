@@ -3,10 +3,9 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "server-full"
-   config.vm.provider :virtualbox do |vb|
-     # Don't boot with headless mode
-     vb.gui = true
-   end
+#   config.vm.provider :virtualbox do |vb|
+#     # Don't boot with headless mode
+#     vb.gui = true
 
 #	config.vm.share_folder "puppet", "/puppet", "puppet", :create => true
     
