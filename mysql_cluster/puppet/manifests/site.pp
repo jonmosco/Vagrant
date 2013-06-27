@@ -1,7 +1,7 @@
 node 'db.forkedprocess.com' {
 
-  package { 'mysql-server':
-    ensure => present,
+  class { 'mysql::server':
+    config_hash => { 'root_password' => 'vagrant' }
   }
 
 }
