@@ -11,8 +11,8 @@ subcommand to install the module into our shared directory (instead of Puppet’
 
 Example:
 
-$ cd /etc/puppet/modules
-$ sudo puppet module install install puppetlabs/mysql --target-dir /vagrant/puppet/modules/
+	$ cd /etc/puppet/modules
+	$ sudo puppet module install install puppetlabs/mysql --target-dir /vagrant/puppet/modules/
 
 This way, all the modules used for that project are in your ~/vagrant directory and can 
 be put in version control.
