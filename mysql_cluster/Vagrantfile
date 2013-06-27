@@ -1,0 +1,25 @@
+# Testing for MySQL Clustering
+#
+Vagrant.configure("2") do |config|
+
+ config.vm.provision :puppet do |puppet|
+   puppet.manifests_path = "puppet/manifests"
+   puppet.manifest_file = "site.pp"
+   puppet.module_path = "puppet/modules"
+ end
+
+  config.vm.define :web do |web|
+    web.vm.box = "centos6"
+    web.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+    web.vm.hostname = "web.forkedprocess.com"
+    web.vm.network :private_network, ip: "192.168.33.2"
+  end
+
+  config.vm.define :db do |db|
+    db.vm.box = "centos6"
+    db.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+    db.vm.hostname = "db.forkedprocess.com"
+    db.vm.network :private_network, ip: "192.168.33.3"
+  end
+
+end
