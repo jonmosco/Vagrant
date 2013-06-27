@@ -8,8 +8,6 @@ node 'db.forkedprocess.com' {
 
 node 'web.forkedprocess.com' {
 
-  package { 'httpd':
-    ensure => present,
-  }
+  class {'apache':  }
 
 }

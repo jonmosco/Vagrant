@@ -1,3 +1,4 @@
 # Do not track .vagrant/ directories
 # Can cause problems if the VMs are shared
 .vagrant/
+*.iso
