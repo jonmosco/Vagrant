@@ -1,4 +1,6 @@
-# MySQL Cluster
+# Testing configuration
+#
+# Apache and MySQL deployment for testing Rails
 #
 node 'db.forkedprocess.com' {
 
@@ -10,6 +12,7 @@ node 'db.forkedprocess.com' {
     action => accept,
   }
 
+  # Install MySQL server and start the service
   class { 'mysql::server':
     config_hash => { 'root_password' => 'vagrant' }
   }
@@ -20,6 +23,11 @@ node 'db.forkedprocess.com' {
     host     => 'web.forkedprocess.com',
     grant    => ['all'],
     require => Class['mysql::server'],
+  }
+
+  package { 'bundler':
+    provider => gem,
+    ensure   => present,
   }
 
 }
@@ -35,7 +43,8 @@ node 'web.forkedprocess.com' {
     proto  => tcp,
     action => accept,
   }
-
-  class {'apache':  }
+  
+  # Install mysql client
+  class { 'apache':  }
 
 }
