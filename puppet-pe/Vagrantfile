@@ -1,0 +1,29 @@
+# Testing for Puppet Enterprise
+#
+Vagrant.configure("2") do |config|
+
+ config.vm.provision :puppet do |puppet|
+   puppet.manifests_path = "puppet/manifests"
+   puppet.manifest_file = "site.pp"
+   puppet.module_path = "puppet/modules"
+ end
+
+  # Our Puppet Enterprise Master
+  config.vm.define :master do |master|
+    master.vm.box = "centos6"
+    master.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+    master.vm.hostname = "puppet.forkedprocess.com"
+    master.vm.network :private_network, ip: "192.168.33.2"
+    master.vm.network :forwarded_port, guest: 80, host: 8080
+  end
+
+  # Puppet Agent
+  config.vm.define :agent do |agent|
+    agent.vm.box = "centos6"
+    agent.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+    agent.vm.hostname = "agent.forkedprocess.com"
+    agent.vm.network :private_network, ip: "192.168.33.3"
+    agent.vm.network :forwarded_port, guest: 3306, host: 3306
+  end
+
+end
