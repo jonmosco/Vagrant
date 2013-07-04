@@ -1,7 +1,7 @@
 Pupppet Processional Certification Practice
 -------------------------------------------------------------------------------
 
-My own spin of the Learning Puppet VM
+My own spin off of the Learning Puppet VM
 
 
 Notes
