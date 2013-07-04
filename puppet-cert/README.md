@@ -8,6 +8,7 @@ Notes
 -------------------------------------------------------------------------------
 
 Puppet is installed as a Ruby Gem on boxes provided from the internet
+
         To list the Gems:
         $ gem list --local
         or
