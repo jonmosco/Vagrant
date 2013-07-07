@@ -2,3 +2,4 @@
 # Can cause problems if the VMs are shared
 .vagrant/
 *.iso
+license.lic
