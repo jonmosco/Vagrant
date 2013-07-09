@@ -1,16 +1,24 @@
 # AWS Testing!
+# Keep all keys in a separate file!
 #
 Vagrant.configure("2") do |config|
   config.vm.box = "dummy"
 
   config.vm.provider :aws do |aws, override|
-    aws.access_key_id = "YOUR KEY"
-    aws.secret_access_key = "YOUR SECRET KEY"
-    aws.keypair_name = "KEYPAIR NAME"
+    aws.access_key_id = ENV['AWS_ACCESS_KEY']
+    aws.secret_access_key = ENV['AWS_SECRET_KEY']
+    aws.keypair_name = ENV['AWS_KEYPAIR_NAME']
 
+    # Ubuntu 12.04 LTS
     aws.ami = "ami-7747d01e"
+    # Windows Server 2012
+    #aws.ami = "ami-db95e2b2"
+    # Windows Server 2008R2 Datacenter
+    #aws.ami = "ami-2f96e146"
+    # For Windows, forward RDP 
+    #web.vm.network :forwarded_port, guest: 3389, host: 3389 
 
-    override.ssh.username = "ubuntu"
-    override.ssh.private_key_path = "PATH TO YOUR PRIVATE KEY"
+    override.ssh.username = "ubuntu-vagrant"
+    override.ssh.private_key_path = "~/.ssh/aws/macbook.pem"
   end
 end
