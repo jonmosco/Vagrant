@@ -1,0 +1,16 @@
+# 
+# Chef Learning
+# 
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "vmware-ubuntu"
+  config.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+
+  # Chef Provisioning
+  config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "apt"
+    chef.add_recipe "apache2"
+  end
+
+end
