@@ -1,0 +1,4 @@
+set :application, "isminc.com"
+set :deploy_to, "/var/www"
+set :repository, "svn+ssh://code.capify.org/repos/tutorial"
+role :web, "192.168.33.3"

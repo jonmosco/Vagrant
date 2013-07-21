@@ -1,0 +1,29 @@
+#
+# Testing for Capistrano 
+#
+Vagrant.configure("2") do |config|
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file = "site.pp"
+    puppet.module_path = "puppet/modules"
+  end
+
+  config.vm.define :source do |source|
+    source.vm.box = "ununtu-vmware"
+    source.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+    source.vm.hostname = "source.forkedprocess.com"
+    source.vm.network :private_network, ip: "192.168.33.2"
+    source.vm.network :forwarded_port, guest: 80, host: 8080
+  end
+
+  config.vm.define :dest do |dest|
+    dest.vm.box = "ununtu-vmware"
+    dest.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+    dest.vm.hostname = "dest.forkedprocess.com"
+    dest.vm.network :private_network, ip: "192.168.33.3"
+    dest.vm.network :forwarded_port, guest: 80, host: 8080
+  end
+
+# closes the configuration block
+end

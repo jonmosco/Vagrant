@@ -1,3 +1,4 @@
+#
 # Testing for MySQL Clustering
 #
 # NOTES
@@ -7,10 +8,15 @@
 # The |config| portion of the line says that for the duration of the 
 # configuration can be set on the config variable
 #
+# The syntax do/end in Ruby indicates that a block of code is being passed
+# as an argument to a method
+#
 Vagrant.configure("2") do |config|
 
   # a function call to provision, and an additional configuration
   # block is opened, using do and end
+  #
+  # Symbols are constructed by placing a colon before a string
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file = "site.pp"
