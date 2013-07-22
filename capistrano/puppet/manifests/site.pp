@@ -11,7 +11,7 @@ node 'source.forkedprocess.com' {
 
 node 'dest.forkedprocess.com' {
 
-  $packages = [ 'apache2', 'subversion' ]
+  $packages = [ 'apache2', 'git', 'subversion' ]
 
   exec { 'apt-get update':
     path => '/usr/bin',
