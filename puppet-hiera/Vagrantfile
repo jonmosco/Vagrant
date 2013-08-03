@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
     puppet.module_path = "puppet/modules"
     # Use Hiera
     puppet.options = "--hiera_config /vagrant/hiera.yaml"
+  end
 
   config.vm.define :hiera do |hiera|
     hiera.vm.box = "centos6"
@@ -17,5 +18,4 @@ Vagrant.configure("2") do |config|
     hiera.vm.network :forwarded_port, guest: 80, host: 8080
   end
 
-  end
 end

@@ -1,4 +1,9 @@
 ---
-:backends:
-  - yaml
+:backends: yaml
+:yaml:
+  :datadir: /vagrant/hiera/
 :hierarchy:
+  - "%{::clientcert}"
+  - "%{::environment}"
+  - "virtual_%{::is_virtual}"
+  - common
