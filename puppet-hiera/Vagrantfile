@@ -1,0 +1,21 @@
+# Hiera Learning VM
+#
+Vagrant.configure("2") do |config|
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file = "site.pp"
+    puppet.module_path = "puppet/modules"
+    # Use Hiera
+    puppet.options = "--hiera_config /vagrant/hiera.yaml"
+
+  config.vm.define :hiera do |hiera|
+    hiera.vm.box = "centos6"
+    hiera.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-fusion503.box"
+    hiera.vm.hostname = "hiera.forkedprocess.com"
+    hiera.vm.network :private_network, ip: "192.168.33.20"
+    hiera.vm.network :forwarded_port, guest: 80, host: 8080
+  end
+
+  end
+end
