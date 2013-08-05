@@ -1,0 +1,51 @@
+# Puppet Enterprise testing
+#
+# Vagrantfile is read in order:
+# - Set config defaults for pe_build that apply to both 
+#   nodes
+# - define the server
+# - define the location of the box
+# - use the vagrant-hosts plugin
+# - use the pe_bootstrap plugin 
+#
+Vagrant.configure('2') do |config|
+
+  # These settings go in the config object namespace and act as defaults
+  # in the event multiple machines are being provisioned
+  config.pe_build.version       = '3.0.0'
+  config.pe_build.suffix        = 'el-6-x86_64'
+
+  config.vm.define 'master' do |master|
+    master.vm.box = "centos6_custom"
+
+    # vagrant-hosts plugin
+    config.vm.provision :hosts do |provisioner|
+      provisioner.add_host '192.168.33.20', [ 'puppet.puppetlabs.vm' ]
+    end
+
+    master.vm.provision :pe_bootstrap do |provisioner|
+      provisioner.role = :master
+      provisioner.answer_file = './answers/master.txt'
+    end
+  end
+
+  config.vm.define 'agent1' do |node|
+    node.vm.box = "centos6_custom"
+
+
+    # vagrant-hosts plugin
+    config.vm.provision :hosts do |provisioner|
+      provisioner.add_host '192.168.33.21', [
+        'agent1.puppetlabs.vm',
+        'node.puppetlabs.vm',
+        'agent',
+         'node'
+      ]
+    end
+
+      node.vm.provision :pe_bootstrap do |provisioner|
+        provisioner.answer_file = './answers/agent.txt'
+        provisioner.role = :agent
+      end
+  end
+end

@@ -3,3 +3,5 @@
 .vagrant/
 *.iso
 license.lic
+boxes/
+.pe_build/
