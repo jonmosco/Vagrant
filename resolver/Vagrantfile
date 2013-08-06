@@ -1,0 +1,19 @@
+# Hiera Learning VM
+#
+Vagrant.configure("2") do |config|
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file = "site.pp"
+    puppet.module_path = "puppet/modules"
+    # Use Hiera
+    puppet.options = "--resolver_config /vagrant/resolver.yaml"
+  end
+
+  config.vm.define :resolver do |resolver|
+    resolver.vm.box = "vmware-ubuntu"
+    resolver.vm.hostname = "resolver.forkedprocess.com"
+    resolver.vm.network :private_network, ip: "192.168.33.50"
+  end
+
+end
