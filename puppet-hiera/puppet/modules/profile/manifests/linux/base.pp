@@ -6,7 +6,8 @@
 class profile::linux::base {
 
   # selinux config
-  include puppet_selinux
+  #include puppet_selinux
+  include resolver
 
   firewall { '100 allow http and https access':
     port   => [80, 443],

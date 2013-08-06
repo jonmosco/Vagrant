@@ -1,12 +1,12 @@
 # Puppet Enterprise testing
 #
 # Vagrantfile is read in order:
-# - Set config defaults for pe_build that apply to both 
+# - Set config defaults for pe_build that apply to both
 #   nodes
 # - define the server
 # - define the location of the box
 # - use the vagrant-hosts plugin
-# - use the pe_bootstrap plugin 
+# - use the pe_bootstrap plugin
 #
 Vagrant.configure('2') do |config|
 

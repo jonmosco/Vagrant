@@ -24,4 +24,10 @@ class puppet_selinux (
     content  => template('puppet_selinux/config.erb'),
   }
 
+  if $::selinux == /enforcing|permissive/ {
+    exec { "setenforce ${mode}":
+     unless => 'getenforce | grep -i disabled',
+    }
+  }
+
 }

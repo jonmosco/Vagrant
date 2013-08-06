@@ -26,8 +26,8 @@ node 'db.forkedprocess.com' {
   }
 
   package { 'bundler':
-    provider => gem,
     ensure   => present,
+    provider => gem,
   }
 
 }
@@ -43,7 +43,7 @@ node 'web.forkedprocess.com' {
     proto  => tcp,
     action => accept,
   }
-  
+
   # Install mysql client
   class { 'apache':  }
 

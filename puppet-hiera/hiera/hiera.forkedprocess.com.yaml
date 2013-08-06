@@ -1,2 +1,6 @@
 ---
 puppet_selinux::mode: 'enforcing'
+resolver::nameserver:
+  - '4.2.2.2'
+  - '8.2.2.2'
+resolver::domain: 'google.com'
